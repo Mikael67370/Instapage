@@ -1174,6 +1174,178 @@
       line-height: 1.6;
     }
 
+    /* ─── RESTAURANT SIM ─── */
+    .resto-sim { background: var(--bg); }
+
+    .resto-sim-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .resto-sim-text { max-width: 480px; }
+
+    .resto-sim-text h2 {
+      font-size: clamp(1.5rem, 3vw, 2.25rem);
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+      margin-bottom: 16px;
+    }
+
+    .resto-sim-text .section-intro { margin-bottom: 24px; }
+
+    .resto-features {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    .resto-feat {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+    }
+
+    .resto-feat-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .resto-feat-icon svg { width: 16px; height: 16px; }
+    .resto-feat-icon--green { background: rgba(16,185,129,0.12); color: var(--green); }
+    .resto-feat-icon--amber { background: rgba(245,158,11,0.12); color: var(--amber); }
+    .resto-feat-icon--accent { background: rgba(99,102,241,0.12); color: var(--accent-light); }
+    .resto-feat-icon--pink { background: rgba(236,72,153,0.12); color: #EC4899; }
+
+    /* Restaurant phone */
+    .resto-phone-wrap {
+      display: flex;
+      justify-content: center;
+      perspective: 1000px;
+    }
+
+    .resto-phone {
+      width: 300px;
+      background: #1C1C1E;
+      border-radius: 36px;
+      border: 2px solid rgba(255,255,255,0.1);
+      box-shadow:
+        0 0 0 1px rgba(255,255,255,0.05),
+        0 25px 60px -12px rgba(0,0,0,0.6),
+        0 0 60px rgba(16,185,129,0.12);
+      overflow: hidden;
+      animation: phoneFloat 6s ease-in-out infinite;
+    }
+
+    .resto-phone .phone-header {
+      background: #075E54;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .resto-phone .phone-avatar {
+      background: #25D366;
+    }
+
+    .resto-phone .phone-input-send {
+      background: #25D366;
+    }
+
+    .resto-phone .msg--out {
+      background: #005C4B;
+    }
+
+    .resto-phone .phone-status-dot {
+      background: #25D366;
+    }
+
+    .resto-replay {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      margin: 14px auto 0;
+      font-family: inherit;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      background: none;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 7px 14px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .resto-replay:hover { color: #25D366; border-color: rgba(37,211,102,0.3); }
+    .resto-replay svg { width: 13px; height: 13px; }
+
+    /* Booking confirmed badge */
+    .resto-confirmed {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin: 10px 16px 14px;
+      padding: 10px 14px;
+      background: rgba(16,185,129,0.1);
+      border: 1px solid rgba(16,185,129,0.2);
+      border-radius: 12px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--green);
+      opacity: 0;
+      transform: translateY(6px);
+      transition: all 0.5s cubic-bezier(.4,0,.2,1);
+    }
+
+    .resto-confirmed.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .resto-confirmed svg { width: 14px; height: 14px; flex-shrink: 0; }
+
+    @media (max-width: 900px) {
+      .resto-sim-layout { grid-template-columns: 1fr; text-align: center; gap: 36px; }
+      .resto-sim-text { max-width: 100%; }
+      .resto-features { align-items: center; }
+    }
+
+    @media (max-width: 640px) {
+      .resto-phone { width: 240px; border-radius: 26px; }
+      .resto-phone .phone-header { padding: 8px 12px; gap: 7px; }
+      .resto-phone .phone-avatar { width: 26px; height: 26px; font-size: 0.55rem; }
+      .resto-phone .phone-username { font-size: 0.72rem; }
+      .resto-phone .phone-status { font-size: 0.5rem; }
+      .resto-phone .phone-messages { min-height: 200px; padding: 8px; gap: 6px; }
+      .resto-phone .msg { font-size: 0.65rem; padding: 7px 10px; border-radius: 12px; }
+      .resto-phone .phone-input { padding: 6px 10px; }
+      .resto-phone .phone-input-field { height: 26px; font-size: 0.62rem; }
+      .resto-phone .phone-input-send { width: 24px; height: 24px; }
+      .resto-phone .phone-input-send svg { width: 10px; height: 10px; }
+      .resto-confirmed { font-size: 0.62rem; padding: 8px 10px; margin: 8px 10px 10px; }
+      .resto-replay { font-size: 0.68rem; padding: 6px 10px; }
+      .resto-feat { font-size: 0.8rem; }
+      .resto-feat-icon { width: 28px; height: 28px; }
+      .resto-feat-icon svg { width: 14px; height: 14px; }
+    }
+
+    @media (max-width: 380px) {
+      .resto-phone { width: 210px; }
+      .resto-phone .phone-messages { min-height: 170px; }
+      .resto-phone .msg { font-size: 0.6rem; padding: 6px 8px; }
+    }
+
     /* ─── HOW IT WORKS ─── */
     .how-it-works { background: var(--bg-card); }
 
@@ -2350,6 +2522,94 @@
 
   <hr class="section-divider">
 
+  <!-- Restaurant AI Booking Simulation -->
+  <section class="resto-sim">
+    <div class="container">
+      <div class="resto-sim-layout">
+        <div class="resto-sim-text reveal">
+          <div class="section-label"><span class="section-label-line"></span> Restaurant AI Agent</div>
+          <h2>Your AI host that <span class="gradient-text">never misses a booking</span></h2>
+          <p class="section-intro">
+            An intelligent WhatsApp agent that handles reservations, checks availability, and confirms bookings — all while you focus on your kitchen.
+          </p>
+          <div class="resto-features">
+            <div class="resto-feat">
+              <div class="resto-feat-icon resto-feat-icon--green">
+                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              </div>
+              Checks real-time calendar availability
+            </div>
+            <div class="resto-feat">
+              <div class="resto-feat-icon resto-feat-icon--accent">
+                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+              </div>
+              Natural conversation — not a chatbot
+            </div>
+            <div class="resto-feat">
+              <div class="resto-feat-icon resto-feat-icon--amber">
+                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m9 16 2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
+              </div>
+              Auto-confirms and logs every booking
+            </div>
+            <div class="resto-feat">
+              <div class="resto-feat-icon resto-feat-icon--pink">
+                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+              </div>
+              Upsells champagne, desserts & more
+            </div>
+          </div>
+          <a href="https://wa.me/33769812391?text=Hi%2C%20I%27d%20like%20to%20know%20more%20about%20the%20restaurant%20AI%20agent" class="btn-primary" target="_blank" rel="noopener">
+            <svg class="wa-svg" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Ask about this for your restaurant
+          </a>
+        </div>
+        <div class="resto-phone-wrap reveal">
+          <div>
+            <div class="resto-phone">
+              <div class="phone-notch"></div>
+              <div class="phone-header">
+                <div class="phone-avatar">AB</div>
+                <div class="phone-user-info">
+                  <div class="phone-username">Alex · The Bistro</div>
+                  <div class="phone-status"><span class="phone-status-dot"></span> online</div>
+                </div>
+              </div>
+              <div class="phone-messages" id="restoChat">
+                <div class="msg msg--in" data-delay="500">Hi! Could I book a table for 4 this Saturday at 7pm? 🍽️</div>
+                <div class="msg msg--typing" data-delay="1200" id="restoTyping">
+                  <span class="typing-dot"></span>
+                  <span class="typing-dot"></span>
+                  <span class="typing-dot"></span>
+                </div>
+                <div class="msg msg--out" data-delay="2600">Hey! Let me check the book for Saturday at 7pm… 📖</div>
+                <div class="msg msg--out" data-delay="4000">Brilliant! Table for 4 on Saturday at 19:00, booked under your name. We'll text you a reminder 👌</div>
+                <div class="msg msg--out" data-delay="5400">Fancy a bottle of Champagne on arrival? Just £35 🥂</div>
+                <div class="msg msg--in" data-delay="6600">Yes please! 🙌</div>
+                <div class="msg msg--out" data-delay="7800">Lovely, that's sorted! See you Saturday. Cheers! ✨</div>
+              </div>
+              <div class="resto-confirmed" id="restoConfirmed">
+                <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="m9 16 2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
+                Booking confirmed · 4 guests · Sat 19:00 · +£35 upsell
+              </div>
+              <div class="phone-input">
+                <div class="phone-input-field">Type a message...</div>
+                <div class="phone-input-send">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                </div>
+              </div>
+            </div>
+            <button class="resto-replay" id="restoReplay">
+              <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
+              Replay
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
   <!-- Why It Matters -->
   <section class="matters">
     <div class="container">
@@ -2742,6 +3002,62 @@
 
     tlReplayBtn.addEventListener('click', function() {
       runTimeline();
+    });
+
+    // ── Restaurant booking simulation ──
+    var restoChat = document.getElementById('restoChat');
+    var restoMsgs = restoChat.querySelectorAll('.msg');
+    var restoTyping = document.getElementById('restoTyping');
+    var restoConfirmed = document.getElementById('restoConfirmed');
+    var restoReplayBtn = document.getElementById('restoReplay');
+    var restoTimers = [];
+    var restoHasPlayed = false;
+
+    function runRestoSim() {
+      restoTimers.forEach(function(t) { clearTimeout(t); });
+      restoTimers = [];
+      restoMsgs.forEach(function(m) { m.classList.remove('show'); m.style.display = ''; });
+      restoConfirmed.classList.remove('show');
+
+      var delays = [];
+      restoMsgs.forEach(function(msg, i) {
+        delays.push(parseInt(msg.getAttribute('data-delay')) || (i * 1000));
+      });
+
+      restoMsgs.forEach(function(msg, i) {
+        var t;
+        if (msg.id === 'restoTyping') {
+          t = setTimeout(function() {
+            msg.classList.add('show');
+            var ht = setTimeout(function() { msg.style.display = 'none'; }, delays[i + 1] ? (delays[i + 1] - delays[i] - 100) : 1200);
+            restoTimers.push(ht);
+          }, delays[i]);
+        } else {
+          t = setTimeout(function() { msg.classList.add('show'); }, delays[i]);
+        }
+        restoTimers.push(t);
+      });
+
+      var ct = setTimeout(function() { restoConfirmed.classList.add('show'); }, 8800);
+      restoTimers.push(ct);
+
+      var loop = setTimeout(runRestoSim, 14000);
+      restoTimers.push(loop);
+    }
+
+    var restoObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting && !restoHasPlayed) {
+          restoHasPlayed = true;
+          runRestoSim();
+        }
+      });
+    }, { threshold: 0.3 });
+
+    restoObserver.observe(restoChat);
+
+    restoReplayBtn.addEventListener('click', function() {
+      runRestoSim();
     });
 
     // ── FAQ toggle ──
