@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Stop Losing Bookings From Instagram | Nexora London</title>
+  <title>Stop Losing Bookings From Instagram & WhatsApp | Nexora London</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -331,11 +331,69 @@
       gap: 6px;
     }
 
+    /* ─── PHONE TAB SWITCHER ─── */
+    .phone-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 4px;
+      margin-bottom: 20px;
+      background: var(--bg-elevated);
+      border-radius: 12px;
+      padding: 4px;
+      border: 1px solid var(--border);
+      width: fit-content;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .phone-tab {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-family: inherit;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      background: none;
+      border: none;
+      border-radius: 9px;
+      padding: 8px 16px;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(.4,0,.2,1);
+    }
+
+    .phone-tab svg { width: 14px; height: 14px; flex-shrink: 0; }
+
+    .phone-tab.active--ig {
+      background: linear-gradient(135deg, rgba(225,48,108,0.15), rgba(247,119,55,0.15));
+      color: #E1306C;
+    }
+
+    .phone-tab.active--wa {
+      background: rgba(37,211,102,0.12);
+      color: #25D366;
+    }
+
+    .phone-tab:not([class*="active"]):hover {
+      color: var(--text-secondary);
+      background: rgba(255,255,255,0.04);
+    }
+
     /* ─── PHONE MOCKUP ─── */
     .hero-visual {
       display: flex;
       justify-content: center;
       perspective: 1000px;
+    }
+
+    .phone-wrapper { position: relative; }
+
+    .phone-screen {
+      display: none;
+    }
+
+    .phone-screen.active {
+      display: block;
     }
 
     .phone {
@@ -349,8 +407,16 @@
         0 0 60px rgba(99,102,241,0.15);
       overflow: hidden;
       transform: rotateY(-5deg) rotateX(2deg);
-      transition: transform 0.6s cubic-bezier(.4,0,.2,1);
+      transition: all 0.6s cubic-bezier(.4,0,.2,1);
       animation: phoneFloat 6s ease-in-out infinite;
+    }
+
+    .phone.phone--wa {
+      border-color: rgba(37,211,102,0.2);
+      box-shadow:
+        0 0 0 1px rgba(37,211,102,0.1),
+        0 25px 60px -12px rgba(0,0,0,0.6),
+        0 0 60px rgba(37,211,102,0.12);
     }
 
     .phone:hover {
@@ -360,6 +426,27 @@
     @keyframes phoneFloat {
       0%, 100% { transform: rotateY(-5deg) rotateX(2deg) translateY(0); }
       50% { transform: rotateY(-5deg) rotateX(2deg) translateY(-10px); }
+    }
+
+    .phone--wa .phone-header {
+      background: #075E54;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .phone--wa .phone-avatar {
+      background: #25D366;
+    }
+
+    .phone--wa .msg--out {
+      background: #005C4B;
+    }
+
+    .phone--wa .phone-input-send {
+      background: #25D366;
+    }
+
+    .phone--wa .phone-input-field {
+      background: #1F2C34;
     }
 
     .phone-notch {
@@ -1835,9 +1922,9 @@
           <span class="hero-badge-dot"></span>
           Built for independent businesses in London
         </div>
-        <h1>Your Instagram DMs are <span class="gradient-text">costing you bookings</span></h1>
+        <h1>Your messages are <span class="gradient-text">costing you bookings</span></h1>
         <p class="hero-sub">
-          When a customer messages your business and doesn't get a reply within minutes, they book somewhere else. We fix that — automatically.
+          When a customer messages you on Instagram or WhatsApp and doesn't get a reply within minutes, they book somewhere else. We fix that — automatically.
         </p>
         <div class="hero-ctas">
           <a href="https://wa.me/33769812391?text=Hi%2C%20I%27d%20like%20a%20quick%20demo%20of%20Nexora%20for%20my%20business" class="btn-primary" target="_blank" rel="noopener">
@@ -1855,31 +1942,74 @@
         </p>
       </div>
       <div class="hero-visual">
-        <div style="position:relative;">
-          <div class="phone">
-            <div class="phone-notch"></div>
-            <div class="phone-header">
-              <div class="phone-avatar">NX</div>
-              <div class="phone-user-info">
-                <div class="phone-username">Nexora</div>
-                <div class="phone-status"><span class="phone-status-dot"></span> Active now</div>
+        <div class="phone-tabs">
+          <button class="phone-tab active--ig" id="tabIg" data-target="screenIg">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="18" cy="6" r="1.5" fill="currentColor" stroke="none"/></svg>
+            Instagram
+          </button>
+          <button class="phone-tab" id="tabWa" data-target="screenWa">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            WhatsApp
+          </button>
+        </div>
+        <div class="phone-wrapper">
+          <!-- Instagram Phone -->
+          <div class="phone-screen active" id="screenIg">
+            <div class="phone">
+              <div class="phone-notch"></div>
+              <div class="phone-header">
+                <div class="phone-avatar">NX</div>
+                <div class="phone-user-info">
+                  <div class="phone-username">Nexora</div>
+                  <div class="phone-status"><span class="phone-status-dot"></span> Active now</div>
+                </div>
+                <svg class="phone-ig-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="18" cy="6" r="1.5" fill="currentColor" stroke="none"/></svg>
               </div>
-              <svg class="phone-ig-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="18" cy="6" r="1.5" fill="currentColor" stroke="none"/></svg>
-            </div>
-            <div class="phone-messages" id="chatMessages">
-              <div class="msg msg--in" data-delay="600">Hi! Do you have any slots free this Saturday? 💈</div>
-              <div class="msg msg--typing" data-delay="1400" id="typingIndicator">
-                <span class="typing-dot"></span>
-                <span class="typing-dot"></span>
-                <span class="typing-dot"></span>
+              <div class="phone-messages" id="chatMessagesIg">
+                <div class="msg msg--in" data-delay="600">Hi! Do you have any slots free this Saturday? 💈</div>
+                <div class="msg msg--typing" data-delay="1400" id="typingIndicatorIg">
+                  <span class="typing-dot"></span>
+                  <span class="typing-dot"></span>
+                  <span class="typing-dot"></span>
+                </div>
+                <div class="msg msg--out" data-delay="2800">Hey! Thanks for your message 👋 We'd love to get you booked in. Let me check Saturday for you — one moment!</div>
+                <div class="msg msg--out" data-delay="4200">You can also book directly here: yourlink.com/book 📅</div>
               </div>
-              <div class="msg msg--out" data-delay="2800">Hey! Thanks for your message 👋 We'd love to get you booked in. Let me check Saturday for you — one moment!</div>
-              <div class="msg msg--out" data-delay="4200">You can also book directly here: yourlink.com/book 📅</div>
+              <div class="phone-input">
+                <div class="phone-input-field">Message...</div>
+                <div class="phone-input-send">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                </div>
+              </div>
             </div>
-            <div class="phone-input">
-              <div class="phone-input-field">Message...</div>
-              <div class="phone-input-send">
-                <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          </div>
+          <!-- WhatsApp Phone -->
+          <div class="phone-screen" id="screenWa">
+            <div class="phone phone--wa">
+              <div class="phone-notch"></div>
+              <div class="phone-header">
+                <div class="phone-avatar">NX</div>
+                <div class="phone-user-info">
+                  <div class="phone-username">Your Business</div>
+                  <div class="phone-status"><span class="phone-status-dot"></span> online</div>
+                </div>
+                <svg class="phone-ig-icon" viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              </div>
+              <div class="phone-messages" id="chatMessagesWa">
+                <div class="msg msg--in" data-delay="600">Hey, is the café open tomorrow? I'd like to book a table for 4 around 1pm 🍽️</div>
+                <div class="msg msg--typing" data-delay="1400" id="typingIndicatorWa">
+                  <span class="typing-dot"></span>
+                  <span class="typing-dot"></span>
+                  <span class="typing-dot"></span>
+                </div>
+                <div class="msg msg--out" data-delay="2800">Hi there! Yes, we're open tomorrow 😊 Let me check availability for a table of 4 at 1pm — one sec!</div>
+                <div class="msg msg--out" data-delay="4200">Great news — that slot is free! I've pencilled you in. See you tomorrow ✅</div>
+              </div>
+              <div class="phone-input">
+                <div class="phone-input-field">Type a message...</div>
+                <div class="phone-input-send">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                </div>
               </div>
             </div>
           </div>
@@ -1938,7 +2068,7 @@
       <div class="section-label"><span class="section-label-line"></span> The Problem</div>
       <h2>You're busy. Messages get missed.</h2>
       <p class="section-intro">
-        You're cutting hair, making coffee, or running a kitchen. You can't check Instagram every five minutes. But your customers expect fast replies.
+        You're cutting hair, making coffee, or running a kitchen. You can't check Instagram and WhatsApp every five minutes. But your customers expect fast replies.
       </p>
       <div class="problem-grid">
         <div class="problem-card reveal">
@@ -1999,7 +2129,7 @@
         <div class="section-label"><span class="section-label-line"></span> Who Is This For</div>
         <h2>Built for busy independents like you.</h2>
         <p class="section-intro">
-          If you run a local business in London and get enquiries through Instagram, this is for you.
+          If you run a local business in London and get enquiries through Instagram or WhatsApp, this is for you.
         </p>
       </div>
       <div class="audience-grid">
@@ -2011,7 +2141,7 @@
         <div class="audience-card reveal reveal-delay-1">
           <span class="audience-emoji">☕</span>
           <h3>Cafés</h3>
-          <p>Morning rush, short-staffed, and someone on Instagram is asking about catering for an event.</p>
+          <p>Morning rush, short-staffed, and someone on Instagram or WhatsApp is asking about catering for an event.</p>
         </div>
         <div class="audience-card reveal reveal-delay-2">
           <span class="audience-emoji">🍽️</span>
@@ -2196,14 +2326,14 @@
           <div class="step-number">2</div>
           <div>
             <h3>We set everything up for you</h3>
-            <p>We connect the system to your Instagram and configure your automatic replies. You don't need to touch anything technical.</p>
+            <p>We connect the system to your Instagram and WhatsApp and configure your automatic replies. You don't need to touch anything technical.</p>
           </div>
         </div>
         <div class="step reveal reveal-delay-2">
           <div class="step-number">3</div>
           <div>
             <h3>You start getting notified</h3>
-            <p>From that point on, every Instagram message gets an instant reply and you get a notification. Simple as that.</p>
+            <p>From that point on, every Instagram and WhatsApp message gets an instant reply and you get a notification. Simple as that.</p>
           </div>
         </div>
       </div>
@@ -2296,7 +2426,7 @@
           <ul class="service-features">
             <li>
               <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-              Instagram content strategy
+              Instagram & WhatsApp strategy
             </li>
             <li>
               <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
@@ -2401,48 +2531,99 @@
       revealObserver.observe(el);
     });
 
-    // ── Chat animation ──
-    var messages = document.querySelectorAll('#chatMessages .msg');
-    var typingIndicator = document.getElementById('typingIndicator');
-    var notifToast = document.getElementById('notifToast');
+    // ── Phone tab switching ──
+    var tabIg = document.getElementById('tabIg');
+    var tabWa = document.getElementById('tabWa');
+    var screenIg = document.getElementById('screenIg');
+    var screenWa = document.getElementById('screenWa');
+    var activeScreen = 'ig';
+    var igTimer = null;
+    var waTimer = null;
 
-    function animateChat() {
-      messages.forEach(function(msg) {
-        msg.classList.remove('show');
-        msg.style.display = '';
-      });
+    function switchToScreen(screen) {
+      if (screen === 'ig') {
+        activeScreen = 'ig';
+        screenIg.classList.add('active');
+        screenWa.classList.remove('active');
+        tabIg.className = 'phone-tab active--ig';
+        tabWa.className = 'phone-tab';
+        clearChatTimers('wa');
+        startChat('ig');
+      } else {
+        activeScreen = 'wa';
+        screenWa.classList.add('active');
+        screenIg.classList.remove('active');
+        tabWa.className = 'phone-tab active--wa';
+        tabIg.className = 'phone-tab';
+        clearChatTimers('ig');
+        startChat('wa');
+      }
+    }
+
+    tabIg.addEventListener('click', function() { switchToScreen('ig'); });
+    tabWa.addEventListener('click', function() { switchToScreen('wa'); });
+
+    // ── Chat animation (shared for both screens) ──
+    var notifToast = document.getElementById('notifToast');
+    var chatTimers = [];
+
+    function clearChatTimers(screen) {
+      chatTimers.forEach(function(t) { clearTimeout(t); });
+      chatTimers = [];
+      var containerId = screen === 'ig' ? 'chatMessagesIg' : 'chatMessagesWa';
+      var msgs = document.querySelectorAll('#' + containerId + ' .msg');
+      msgs.forEach(function(m) { m.classList.remove('show'); m.style.display = ''; });
       notifToast.classList.remove('show');
-      if (typingIndicator) typingIndicator.style.display = '';
+    }
+
+    function startChat(screen) {
+      var containerId = screen === 'ig' ? 'chatMessagesIg' : 'chatMessagesWa';
+      var typingId = screen === 'ig' ? 'typingIndicatorIg' : 'typingIndicatorWa';
+      var messages = document.querySelectorAll('#' + containerId + ' .msg');
+      var typingEl = document.getElementById(typingId);
+
+      messages.forEach(function(m) { m.classList.remove('show'); m.style.display = ''; });
+      notifToast.classList.remove('show');
 
       var delays = [];
       messages.forEach(function(msg, i) {
-        var delay = parseInt(msg.getAttribute('data-delay')) || (i * 1000);
-        delays.push(delay);
+        delays.push(parseInt(msg.getAttribute('data-delay')) || (i * 1000));
       });
 
       messages.forEach(function(msg, i) {
-        if (msg.id === 'typingIndicator') {
-          setTimeout(function() {
+        var t;
+        if (msg.id === typingId) {
+          t = setTimeout(function() {
+            if (activeScreen !== screen) return;
             msg.classList.add('show');
-            setTimeout(function() {
+            var hideT = setTimeout(function() {
               msg.style.display = 'none';
             }, delays[i + 1] ? (delays[i + 1] - delays[i] - 100) : 1200);
+            chatTimers.push(hideT);
           }, delays[i]);
         } else {
-          setTimeout(function() {
+          t = setTimeout(function() {
+            if (activeScreen !== screen) return;
             msg.classList.add('show');
           }, delays[i]);
         }
+        chatTimers.push(t);
       });
 
-      setTimeout(function() {
+      var nt = setTimeout(function() {
+        if (activeScreen !== screen) return;
         notifToast.classList.add('show');
       }, 3200);
+      chatTimers.push(nt);
 
-      setTimeout(animateChat, 10000);
+      var loopT = setTimeout(function() {
+        if (activeScreen !== screen) return;
+        startChat(screen);
+      }, 10000);
+      chatTimers.push(loopT);
     }
 
-    setTimeout(animateChat, 800);
+    setTimeout(function() { startChat('ig'); }, 800);
 
     // ── Timeline simulation ──
     var simSection = document.getElementById('simulation');
