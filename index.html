@@ -1,0 +1,2502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stop Losing Bookings From Instagram | Nexora London</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #09090B;
+      --bg-card: #18181B;
+      --bg-elevated: #1F1F23;
+      --surface: #FFFFFF;
+      --text: #FAFAFA;
+      --text-secondary: #A1A1AA;
+      --text-muted: #71717A;
+      --accent: #6366F1;
+      --accent-light: #818CF8;
+      --accent-glow: rgba(99,102,241,0.25);
+      --gradient-1: #6366F1;
+      --gradient-2: #8B5CF6;
+      --gradient-3: #EC4899;
+      --border: rgba(255,255,255,0.06);
+      --border-light: rgba(255,255,255,0.1);
+      --red: #EF4444;
+      --red-dim: rgba(239,68,68,0.12);
+      --green: #22C55E;
+      --green-dim: rgba(34,197,94,0.12);
+      --amber: #F59E0B;
+      --amber-dim: rgba(245,158,11,0.12);
+      --radius: 16px;
+      --radius-lg: 24px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    .container {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .container--narrow {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 16px 0;
+      transition: all 0.35s cubic-bezier(.4,0,.2,1);
+    }
+
+    nav.scrolled {
+      background: rgba(9,9,11,0.8);
+      backdrop-filter: blur(20px) saturate(1.4);
+      -webkit-backdrop-filter: blur(20px) saturate(1.4);
+      border-bottom: 1px solid var(--border);
+    }
+
+    nav .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-weight: 800;
+      font-size: 1.25rem;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: -0.03em;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .logo-icon {
+      width: 32px;
+      height: 32px;
+      background: linear-gradient(135deg, var(--gradient-1), var(--gradient-2));
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logo-icon svg { width: 18px; height: 18px; }
+
+    .nav-cta {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: #fff;
+      text-decoration: none;
+      padding: 10px 20px;
+      background: linear-gradient(135deg, var(--gradient-1), var(--gradient-2));
+      border-radius: 10px;
+      transition: all 0.3s cubic-bezier(.4,0,.2,1);
+      box-shadow: 0 0 20px var(--accent-glow);
+    }
+
+    .nav-cta:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 0 30px var(--accent-glow), 0 4px 16px rgba(0,0,0,0.3);
+    }
+
+    /* ─── HERO ─── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 120px 0 80px;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .hero-blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(100px);
+      opacity: 0.4;
+      animation: blobFloat 20s ease-in-out infinite;
+    }
+
+    .hero-blob--1 {
+      width: 600px;
+      height: 600px;
+      background: var(--gradient-1);
+      top: -20%;
+      left: -10%;
+      animation-delay: 0s;
+    }
+
+    .hero-blob--2 {
+      width: 500px;
+      height: 500px;
+      background: var(--gradient-3);
+      top: 10%;
+      right: -15%;
+      animation-delay: -7s;
+    }
+
+    .hero-blob--3 {
+      width: 400px;
+      height: 400px;
+      background: var(--gradient-2);
+      bottom: -10%;
+      left: 30%;
+      animation-delay: -14s;
+    }
+
+    @keyframes blobFloat {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      33% { transform: translate(30px, -40px) scale(1.05); }
+      66% { transform: translate(-20px, 20px) scale(0.95); }
+    }
+
+    .hero-grid-bg {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+      -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+    }
+
+    .hero .container {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .hero-content {
+      max-width: 540px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--accent-light);
+      background: rgba(99,102,241,0.1);
+      border: 1px solid rgba(99,102,241,0.2);
+      padding: 8px 16px;
+      border-radius: 100px;
+      margin-bottom: 28px;
+      letter-spacing: 0.02em;
+    }
+
+    .hero-badge-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--green);
+      border-radius: 50%;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.5); }
+    }
+
+    h1 {
+      font-size: clamp(2.25rem, 4.5vw, 3.5rem);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.04em;
+      color: var(--text);
+      margin-bottom: 24px;
+    }
+
+    .gradient-text {
+      background: linear-gradient(135deg, var(--gradient-1), var(--gradient-3));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-sub {
+      font-size: 1.125rem;
+      color: var(--text-secondary);
+      margin-bottom: 36px;
+      line-height: 1.75;
+    }
+
+    .hero-ctas {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: inherit;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #fff;
+      background: linear-gradient(135deg, var(--gradient-1), var(--gradient-2));
+      border: none;
+      padding: 16px 28px;
+      border-radius: 12px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s cubic-bezier(.4,0,.2,1);
+      box-shadow: 0 0 24px var(--accent-glow), 0 4px 12px rgba(0,0,0,0.3);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.1), transparent);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .btn-primary:hover::before { opacity: 1; }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 40px var(--accent-glow), 0 8px 24px rgba(0,0,0,0.4);
+    }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: inherit;
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      text-decoration: none;
+      padding: 16px 20px;
+      border-radius: 12px;
+      border: 1px solid var(--border-light);
+      background: rgba(255,255,255,0.03);
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+
+    .btn-ghost:hover {
+      color: var(--text);
+      border-color: rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.06);
+    }
+
+    .hero-note {
+      margin-top: 20px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* ─── PHONE MOCKUP ─── */
+    .hero-visual {
+      display: flex;
+      justify-content: center;
+      perspective: 1000px;
+    }
+
+    .phone {
+      width: 300px;
+      background: #1C1C1E;
+      border-radius: 36px;
+      border: 2px solid rgba(255,255,255,0.1);
+      box-shadow:
+        0 0 0 1px rgba(255,255,255,0.05),
+        0 25px 60px -12px rgba(0,0,0,0.6),
+        0 0 60px rgba(99,102,241,0.15);
+      overflow: hidden;
+      transform: rotateY(-5deg) rotateX(2deg);
+      transition: transform 0.6s cubic-bezier(.4,0,.2,1);
+      animation: phoneFloat 6s ease-in-out infinite;
+    }
+
+    .phone:hover {
+      transform: rotateY(0deg) rotateX(0deg) scale(1.02);
+    }
+
+    @keyframes phoneFloat {
+      0%, 100% { transform: rotateY(-5deg) rotateX(2deg) translateY(0); }
+      50% { transform: rotateY(-5deg) rotateX(2deg) translateY(-10px); }
+    }
+
+    .phone-notch {
+      width: 120px;
+      height: 28px;
+      background: #000;
+      margin: 0 auto;
+      border-radius: 0 0 16px 16px;
+    }
+
+    .phone-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 20px 12px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .phone-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #E1306C, #F77737);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #fff;
+      flex-shrink: 0;
+    }
+
+    .phone-user-info { flex: 1; }
+    .phone-username { font-size: 0.8rem; font-weight: 600; color: #fff; }
+    .phone-status { font-size: 0.65rem; color: var(--green); display: flex; align-items: center; gap: 4px; }
+    .phone-status-dot { width: 5px; height: 5px; background: var(--green); border-radius: 50%; }
+
+    .phone-ig-icon {
+      width: 20px;
+      height: 20px;
+      opacity: 0.4;
+    }
+
+    .phone-messages {
+      padding: 16px;
+      min-height: 280px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .msg {
+      max-width: 85%;
+      padding: 10px 14px;
+      border-radius: 18px;
+      font-size: 0.78rem;
+      line-height: 1.5;
+      opacity: 0;
+      transform: translateY(10px);
+    }
+
+    .msg--in {
+      background: #2C2C2E;
+      color: #fff;
+      align-self: flex-start;
+      border-bottom-left-radius: 6px;
+    }
+
+    .msg--out {
+      background: linear-gradient(135deg, var(--gradient-1), var(--gradient-2));
+      color: #fff;
+      align-self: flex-end;
+      border-bottom-right-radius: 6px;
+    }
+
+    .msg--typing {
+      background: #2C2C2E;
+      color: var(--text-muted);
+      align-self: flex-start;
+      border-bottom-left-radius: 6px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 12px 18px;
+    }
+
+    .typing-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--text-muted);
+      border-radius: 50%;
+      animation: typingBounce 1.4s ease-in-out infinite;
+    }
+
+    .typing-dot:nth-child(2) { animation-delay: 0.15s; }
+    .typing-dot:nth-child(3) { animation-delay: 0.3s; }
+
+    @keyframes typingBounce {
+      0%, 60%, 100% { transform: translateY(0); }
+      30% { transform: translateY(-4px); }
+    }
+
+    .msg.show {
+      opacity: 1;
+      transform: translateY(0);
+      transition: all 0.4s cubic-bezier(.4,0,.2,1);
+    }
+
+    .phone-input {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 16px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .phone-input-field {
+      flex: 1;
+      height: 36px;
+      background: #2C2C2E;
+      border-radius: 18px;
+      border: none;
+      padding: 0 14px;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+    }
+
+    .phone-input-send {
+      width: 32px;
+      height: 32px;
+      background: linear-gradient(135deg, var(--gradient-1), var(--gradient-2));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .phone-input-send svg { width: 14px; height: 14px; }
+
+    /* ─── NOTIFICATION TOAST ─── */
+    .notif-toast {
+      position: absolute;
+      top: 20px;
+      right: -30px;
+      background: rgba(30,30,34,0.95);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px;
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+      width: 250px;
+      opacity: 0;
+      transform: translateX(20px) scale(0.95);
+      transition: all 0.5s cubic-bezier(.4,0,.2,1);
+      z-index: 10;
+    }
+
+    .notif-toast.show {
+      opacity: 1;
+      transform: translateX(0) scale(1);
+    }
+
+    .notif-icon {
+      width: 36px;
+      height: 36px;
+      background: linear-gradient(135deg, #E1306C, #F77737);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .notif-icon svg { width: 18px; height: 18px; }
+
+    .notif-text { flex: 1; }
+    .notif-title { font-size: 0.7rem; font-weight: 600; color: #fff; margin-bottom: 1px; }
+    .notif-desc { font-size: 0.65rem; color: var(--text-muted); }
+    .notif-time { font-size: 0.6rem; color: var(--text-muted); flex-shrink: 0; align-self: flex-start; }
+
+    /* ─── SECTIONS SHARED ─── */
+    section { padding: 100px 0; position: relative; }
+
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent-light);
+      margin-bottom: 16px;
+    }
+
+    .section-label-line {
+      width: 24px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--gradient-1), var(--gradient-2));
+      border-radius: 2px;
+    }
+
+    h2 {
+      font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+      margin-bottom: 16px;
+      color: var(--text);
+    }
+
+    .section-intro {
+      font-size: 1.05rem;
+      color: var(--text-secondary);
+      margin-bottom: 48px;
+      max-width: 560px;
+      line-height: 1.75;
+    }
+
+    .section-header--center {
+      text-align: center;
+    }
+
+    .section-header--center .section-intro {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* ─── DIVIDERS ─── */
+    .section-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border-light), transparent);
+      border: none;
+      margin: 0;
+    }
+
+    /* ─── PROBLEM ─── */
+    .problem { background: var(--bg); }
+
+    .problem-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .problem-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px 24px;
+      transition: all 0.4s cubic-bezier(.4,0,.2,1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .problem-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--red), #F97316);
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+
+    .problem-card:hover::before { opacity: 1; }
+
+    .problem-card:hover {
+      border-color: rgba(239,68,68,0.2);
+      transform: translateY(-4px);
+      box-shadow: 0 16px 48px rgba(0,0,0,0.3), 0 0 24px rgba(239,68,68,0.08);
+    }
+
+    .problem-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--red-dim);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      margin-bottom: 20px;
+    }
+
+    .problem-card h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: var(--text);
+    }
+
+    .problem-card p {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.65;
+    }
+
+    /* ─── SOLUTION ─── */
+    .solution { background: var(--bg-card); }
+
+    .solution-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .solution-card {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px 24px;
+      transition: all 0.4s cubic-bezier(.4,0,.2,1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .solution-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--green), #34D399);
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+
+    .solution-card:hover::before { opacity: 1; }
+
+    .solution-card:hover {
+      border-color: rgba(34,197,94,0.2);
+      transform: translateY(-4px);
+      box-shadow: 0 16px 48px rgba(0,0,0,0.3), 0 0 24px rgba(34,197,94,0.08);
+    }
+
+    .solution-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--green-dim);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      margin-bottom: 20px;
+    }
+
+    .solution-card h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: var(--text);
+    }
+
+    .solution-card p {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.65;
+    }
+
+    /* ─── TIMELINE SIMULATION ─── */
+    .simulation {
+      background: var(--bg-card);
+      overflow: hidden;
+    }
+
+    .timeline {
+      position: relative;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 0;
+      padding-top: 20px;
+    }
+
+    .timeline-track {
+      position: absolute;
+      top: 52px;
+      left: 60px;
+      right: 60px;
+      height: 3px;
+      background: var(--border);
+      border-radius: 3px;
+      z-index: 0;
+    }
+
+    .timeline-track-fill {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--gradient-1), var(--gradient-2), var(--gradient-3));
+      border-radius: 3px;
+      transition: width 2.5s cubic-bezier(.4,0,.2,1);
+    }
+
+    .simulation.active .timeline-track-fill {
+      width: 100%;
+    }
+
+    .tl-step {
+      flex: 1;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+      opacity: 0;
+      transform: translateY(20px) scale(0.95);
+      transition: all 0.6s cubic-bezier(.4,0,.2,1);
+    }
+
+    .tl-step.active {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    .tl-node {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      margin: 0 auto 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      border: 3px solid var(--border);
+      background: var(--bg-card);
+      transition: all 0.5s cubic-bezier(.4,0,.2,1);
+    }
+
+    .tl-step.active .tl-node {
+      border-color: transparent;
+    }
+
+    .tl-node-inner {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.5s;
+    }
+
+    .tl-step.active .tl-node-inner {
+      background: var(--bg-elevated);
+    }
+
+    .tl-node svg {
+      width: 22px;
+      height: 22px;
+      color: var(--text-muted);
+      transition: all 0.5s;
+    }
+
+    .tl-step.active .tl-node svg {
+      color: var(--accent-light);
+    }
+
+    .tl-node-ring {
+      position: absolute;
+      inset: -6px;
+      border-radius: 50%;
+      border: 2px solid transparent;
+      opacity: 0;
+      transition: all 0.6s;
+    }
+
+    .tl-step.active .tl-node-ring {
+      opacity: 1;
+      animation: ringPulse 2s ease-in-out infinite;
+    }
+
+    .tl-step:nth-child(1).active .tl-node { border-color: var(--accent); box-shadow: 0 0 24px var(--accent-glow); }
+    .tl-step:nth-child(1).active .tl-node-ring { border-color: rgba(99,102,241,0.3); }
+    .tl-step:nth-child(2).active .tl-node { border-color: var(--green); box-shadow: 0 0 24px rgba(34,197,94,0.25); }
+    .tl-step:nth-child(2).active .tl-node svg { color: var(--green); }
+    .tl-step:nth-child(2).active .tl-node-ring { border-color: rgba(34,197,94,0.3); }
+    .tl-step:nth-child(3).active .tl-node { border-color: var(--amber); box-shadow: 0 0 24px rgba(245,158,11,0.25); }
+    .tl-step:nth-child(3).active .tl-node svg { color: var(--amber); }
+    .tl-step:nth-child(3).active .tl-node-ring { border-color: rgba(245,158,11,0.3); }
+    .tl-step:nth-child(4).active .tl-node { border-color: var(--gradient-3); box-shadow: 0 0 24px rgba(236,72,153,0.25); }
+    .tl-step:nth-child(4).active .tl-node svg { color: var(--gradient-3); }
+    .tl-step:nth-child(4).active .tl-node-ring { border-color: rgba(236,72,153,0.3); }
+
+    @keyframes ringPulse {
+      0%, 100% { transform: scale(1); opacity: 0.6; }
+      50% { transform: scale(1.15); opacity: 0.2; }
+    }
+
+    .tl-time {
+      display: inline-block;
+      font-size: 0.65rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 4px 10px;
+      border-radius: 100px;
+      margin-bottom: 10px;
+      opacity: 0;
+      transform: translateY(6px);
+      transition: all 0.4s 0.3s;
+    }
+
+    .tl-step.active .tl-time {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .tl-step:nth-child(1) .tl-time { background: rgba(99,102,241,0.12); color: var(--accent-light); }
+    .tl-step:nth-child(2) .tl-time { background: var(--green-dim); color: var(--green); }
+    .tl-step:nth-child(3) .tl-time { background: var(--amber-dim); color: var(--amber); }
+    .tl-step:nth-child(4) .tl-time { background: rgba(236,72,153,0.12); color: var(--gradient-3); }
+
+    .tl-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+
+    .tl-desc {
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      line-height: 1.55;
+      max-width: 200px;
+      margin: 0 auto;
+    }
+
+    .tl-visual {
+      margin-top: 16px;
+      opacity: 0;
+      transform: scale(0.9);
+      transition: all 0.5s cubic-bezier(.4,0,.2,1) 0.4s;
+    }
+
+    .tl-step.active .tl-visual {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .tl-mini-card {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border-light);
+      border-radius: 10px;
+      padding: 8px 14px;
+      font-size: 0.72rem;
+      color: var(--text-secondary);
+    }
+
+    .tl-mini-card-icon {
+      width: 24px;
+      height: 24px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .tl-mini-card-icon svg {
+      width: 13px;
+      height: 13px;
+    }
+
+    .tl-mini-card-icon--accent { background: rgba(99,102,241,0.15); color: var(--accent-light); }
+    .tl-mini-card-icon--green { background: var(--green-dim); color: var(--green); }
+    .tl-mini-card-icon--amber { background: var(--amber-dim); color: var(--amber); }
+    .tl-mini-card-icon--pink { background: rgba(236,72,153,0.12); color: var(--gradient-3); }
+
+    .tl-replay-wrap {
+      text-align: center;
+      margin-top: 40px;
+      opacity: 0;
+      transition: opacity 0.5s 3.5s;
+    }
+
+    .simulation.active .tl-replay-wrap { opacity: 1; }
+
+    .tl-replay {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: inherit;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      background: none;
+      border: 1px solid var(--border-light);
+      border-radius: 8px;
+      padding: 8px 16px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .tl-replay:hover {
+      color: var(--accent-light);
+      border-color: rgba(99,102,241,0.3);
+      background: rgba(99,102,241,0.06);
+    }
+
+    .tl-replay svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    @media (max-width: 900px) {
+      .timeline {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+      }
+
+      .timeline-track {
+        top: 0;
+        bottom: 0;
+        left: 28px;
+        right: auto;
+        width: 3px;
+        height: auto;
+      }
+
+      .timeline-track-fill {
+        width: 100%;
+        height: 0%;
+        transition: height 2.5s cubic-bezier(.4,0,.2,1);
+      }
+
+      .simulation.active .timeline-track-fill {
+        width: 100%;
+        height: 100%;
+      }
+
+      .tl-step {
+        display: flex;
+        align-items: flex-start;
+        gap: 20px;
+        text-align: left;
+        padding: 16px 0;
+      }
+
+      .tl-node {
+        margin: 0;
+        flex-shrink: 0;
+        width: 48px;
+        height: 48px;
+      }
+
+      .tl-step-content { flex: 1; }
+
+      .tl-desc {
+        max-width: 100%;
+        margin: 0;
+      }
+
+      .tl-visual {
+        margin-top: 12px;
+      }
+
+      .tl-mini-card {
+        display: inline-flex;
+      }
+    }
+
+    /* ─── MATTERS / STATS ─── */
+    .matters { background: var(--bg); }
+
+    .matters-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .matter-card {
+      text-align: center;
+      padding: 40px 24px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      transition: all 0.4s cubic-bezier(.4,0,.2,1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .matter-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 0%, var(--amber-dim), transparent 70%);
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+
+    .matter-card:hover::after { opacity: 1; }
+
+    .matter-card:hover {
+      border-color: rgba(245,158,11,0.2);
+      transform: translateY(-4px);
+    }
+
+    .matter-card > * { position: relative; z-index: 1; }
+
+    .matter-number {
+      font-size: 3rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--amber), #F97316);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 8px;
+      line-height: 1;
+      letter-spacing: -0.03em;
+    }
+
+    .matter-card h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: var(--text);
+    }
+
+    .matter-card p {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* ─── HOW IT WORKS ─── */
+    .how-it-works { background: var(--bg-card); }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      position: relative;
+    }
+
+    .steps::before {
+      content: '';
+      position: absolute;
+      top: 44px;
+      left: calc(33.33% / 2 + 24px);
+      right: calc(33.33% / 2 + 24px);
+      height: 2px;
+      background: linear-gradient(90deg, var(--gradient-1), var(--gradient-2), var(--gradient-3));
+      border-radius: 2px;
+      opacity: 0.3;
+    }
+
+    .step {
+      text-align: center;
+      padding: 32px 24px;
+      position: relative;
+    }
+
+    .step-number {
+      width: 56px;
+      height: 56px;
+      background: linear-gradient(135deg, var(--gradient-1), var(--gradient-2));
+      color: #fff;
+      border-radius: 16px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      font-weight: 800;
+      margin-bottom: 24px;
+      position: relative;
+      z-index: 2;
+      box-shadow: 0 0 30px var(--accent-glow);
+      transition: all 0.3s;
+    }
+
+    .step:hover .step-number {
+      transform: scale(1.1) rotate(-3deg);
+      box-shadow: 0 0 40px var(--accent-glow);
+    }
+
+    .step h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: var(--text);
+    }
+
+    .step p {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.65;
+    }
+
+    /* ─── FAQ ─── */
+    .faq { background: var(--bg); }
+
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .faq-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: all 0.3s cubic-bezier(.4,0,.2,1);
+    }
+
+    .faq-item:hover {
+      border-color: var(--border-light);
+    }
+
+    .faq-item.open {
+      border-color: rgba(99,102,241,0.2);
+      box-shadow: 0 0 24px rgba(99,102,241,0.06);
+    }
+
+    .faq-question {
+      width: 100%;
+      text-align: left;
+      background: none;
+      border: none;
+      font-family: inherit;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text);
+      padding: 20px 24px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      transition: color 0.2s;
+    }
+
+    .faq-question:hover { color: var(--accent-light); }
+
+    .faq-chevron {
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+      color: var(--text-muted);
+      transition: all 0.35s cubic-bezier(.4,0,.2,1);
+    }
+
+    .faq-item.open .faq-chevron {
+      transform: rotate(180deg);
+      color: var(--accent-light);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s cubic-bezier(.4,0,.2,1);
+    }
+
+    .faq-item.open .faq-answer { max-height: 200px; }
+
+    .faq-answer p {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      line-height: 1.75;
+      padding: 0 24px 20px;
+    }
+
+    /* ─── FINAL CTA ─── */
+    .final-cta {
+      text-align: center;
+      padding: 120px 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .final-cta-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+
+    .final-cta-blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(100px);
+      opacity: 0.25;
+    }
+
+    .final-cta-blob--1 {
+      width: 400px;
+      height: 400px;
+      background: var(--gradient-1);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .final-cta-blob--2 {
+      width: 300px;
+      height: 300px;
+      background: var(--gradient-3);
+      top: 20%;
+      right: 10%;
+    }
+
+    .final-cta .container--narrow {
+      position: relative;
+      z-index: 1;
+    }
+
+    .final-cta h2 {
+      font-size: clamp(2rem, 4vw, 2.75rem);
+      margin-bottom: 16px;
+    }
+
+    .final-cta p {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      margin-bottom: 40px;
+      line-height: 1.75;
+    }
+
+    .final-cta .btn-primary {
+      font-size: 1.1rem;
+      padding: 18px 36px;
+    }
+
+    .cta-note {
+      display: block;
+      margin-top: 16px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    /* ─── TRUST BAR ─── */
+    .trust-bar {
+      padding: 32px 0;
+      background: var(--bg-card);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .trust-items {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    .trust-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .trust-icon svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .trust-icon--green { background: var(--green-dim); color: var(--green); }
+    .trust-icon--accent { background: rgba(99,102,241,0.12); color: var(--accent-light); }
+    .trust-icon--amber { background: var(--amber-dim); color: var(--amber); }
+    .trust-icon--pink { background: rgba(236,72,153,0.12); color: var(--gradient-3); }
+
+    @media (max-width: 640px) {
+      .trust-items { flex-direction: column; gap: 16px; align-items: flex-start; padding-left: 24px; }
+    }
+
+    /* ─── WHO IS THIS FOR ─── */
+    .audience { background: var(--bg); }
+
+    .audience-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .audience-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 32px 20px;
+      text-align: center;
+      transition: all 0.4s cubic-bezier(.4,0,.2,1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .audience-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 0%, var(--accent-glow), transparent 70%);
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+
+    .audience-card:hover::before { opacity: 1; }
+
+    .audience-card:hover {
+      border-color: rgba(99,102,241,0.2);
+      transform: translateY(-4px);
+    }
+
+    .audience-card > * { position: relative; z-index: 1; }
+
+    .audience-emoji {
+      font-size: 2.5rem;
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .audience-card h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+      color: var(--text);
+    }
+
+    .audience-card p {
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      line-height: 1.55;
+    }
+
+    @media (max-width: 900px) {
+      .audience-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 640px) {
+      .audience-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ─── FLOATING WHATSAPP ─── */
+    .wa-float {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      animation: waFloat 0.6s cubic-bezier(.4,0,.2,1) 2s both;
+    }
+
+    .wa-float-label {
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: 10px;
+      padding: 8px 14px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--text);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+      white-space: nowrap;
+      opacity: 0;
+      transform: translateX(10px);
+      transition: all 0.3s;
+    }
+
+    .wa-float:hover .wa-float-label {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .wa-float-btn {
+      width: 56px;
+      height: 56px;
+      background: #25D366;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 16px rgba(37,211,102,0.35), 0 8px 24px rgba(0,0,0,0.2);
+      transition: all 0.3s;
+    }
+
+    .wa-float-btn:hover {
+      transform: scale(1.08);
+      box-shadow: 0 6px 24px rgba(37,211,102,0.45), 0 12px 32px rgba(0,0,0,0.3);
+    }
+
+    .wa-float-btn svg {
+      width: 28px;
+      height: 28px;
+      fill: white;
+    }
+
+    .wa-float-pulse {
+      position: absolute;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: #25D366;
+      right: 0;
+      top: 0;
+      animation: waPulse 2s ease-in-out infinite;
+      z-index: -1;
+    }
+
+    @keyframes waFloat {
+      from { opacity: 0; transform: translateY(20px) scale(0.8); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    @keyframes waPulse {
+      0%, 100% { transform: scale(1); opacity: 0.4; }
+      50% { transform: scale(1.4); opacity: 0; }
+    }
+
+    @media (max-width: 640px) {
+      .wa-float { bottom: 20px; right: 20px; }
+      .wa-float-btn { width: 50px; height: 50px; }
+      .wa-float-pulse { width: 50px; height: 50px; }
+      .wa-float-btn svg { width: 24px; height: 24px; }
+      .wa-float-label { display: none; }
+    }
+
+    /* ─── SERVICES SECTION ─── */
+    .services { background: var(--bg-card); }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .service-card {
+      position: relative;
+      background: var(--bg-elevated);
+      border-radius: var(--radius-lg);
+      padding: 36px 28px;
+      transition: all 0.4s cubic-bezier(.4,0,.2,1);
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--gradient-1), var(--gradient-2));
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+
+    .service-card:hover::before { opacity: 1; }
+
+    .service-card:hover {
+      border-color: rgba(99,102,241,0.2);
+      transform: translateY(-6px);
+      box-shadow: 0 20px 48px rgba(0,0,0,0.3), 0 0 32px var(--accent-glow);
+    }
+
+    .service-card-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 24px;
+      font-size: 1.6rem;
+    }
+
+    .service-card-icon--purple { background: rgba(139,92,246,0.12); }
+    .service-card-icon--blue { background: rgba(99,102,241,0.12); }
+    .service-card-icon--pink { background: rgba(236,72,153,0.12); }
+
+    .service-card h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: var(--text);
+    }
+
+    .service-card p {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      line-height: 1.65;
+      margin-bottom: 20px;
+    }
+
+    .service-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .service-features li {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+    }
+
+    .service-features li svg {
+      width: 14px;
+      height: 14px;
+      color: var(--green);
+      flex-shrink: 0;
+    }
+
+    .service-card-badge {
+      display: inline-block;
+      font-size: 0.65rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 4px 10px;
+      border-radius: 6px;
+      margin-bottom: 16px;
+    }
+
+    .service-card-badge--popular {
+      background: rgba(99,102,241,0.12);
+      color: var(--accent-light);
+    }
+
+    .service-card-badge--new {
+      background: rgba(34,197,94,0.12);
+      color: var(--green);
+    }
+
+    .services-cta {
+      text-align: center;
+      margin-top: 48px;
+    }
+
+    .services-cta p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+
+    @media (max-width: 900px) {
+      .services-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ─── WHATSAPP ICON IN BUTTONS ─── */
+    .wa-svg { width: 20px; height: 20px; fill: currentColor; flex-shrink: 0; }
+
+    /* ─── FOOTER ─── */
+    footer {
+      padding: 32px 0;
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+
+    footer p {
+      font-size: 0.825rem;
+      color: var(--text-muted);
+    }
+
+    footer a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    footer a:hover { color: var(--accent-light); }
+
+    /* ─── ANIMATIONS ─── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.7s cubic-bezier(.4,0,.2,1), transform 0.7s cubic-bezier(.4,0,.2,1);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+
+    .hero-content { animation: heroFadeIn 1s cubic-bezier(.4,0,.2,1) both; }
+    .hero-visual { animation: heroFadeIn 1s cubic-bezier(.4,0,.2,1) 0.3s both; }
+
+    @keyframes heroFadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ─── RESPONSIVE ─── */
+
+    /* -- Tablet -- */
+    @media (max-width: 900px) {
+      .hero .container { grid-template-columns: 1fr; text-align: center; }
+      .hero-content { max-width: 100%; }
+      .hero-ctas { justify-content: center; }
+      .hero-note { justify-content: center; }
+      .hero-visual { margin-top: 40px; }
+      .phone { transform: rotateY(0deg) rotateX(0deg); }
+      @keyframes phoneFloat {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-10px); }
+      }
+      .notif-toast { right: -10px; top: -10px; width: 220px; }
+      .problem-grid,
+      .solution-grid,
+      .steps { grid-template-columns: 1fr; }
+      .steps::before { display: none; }
+      .step { text-align: left; padding: 20px 0; display: flex; gap: 20px; align-items: flex-start; }
+      .step-number { margin-bottom: 0; flex-shrink: 0; }
+      .audience-grid { grid-template-columns: repeat(2, 1fr); }
+      .services-grid { grid-template-columns: 1fr; }
+    }
+
+    /* -- Mobile -- */
+    @media (max-width: 640px) {
+      .container, .container--narrow { padding: 0 20px; }
+
+      /* Nav */
+      nav { padding: 12px 0; }
+      .logo { font-size: 1.1rem; gap: 6px; }
+      .logo-icon { width: 28px; height: 28px; border-radius: 7px; }
+      .logo-icon svg { width: 15px; height: 15px; }
+      .nav-cta { font-size: 0.78rem; padding: 8px 14px; border-radius: 8px; }
+
+      /* Hero */
+      .hero { min-height: auto; padding: 100px 0 48px; }
+      .hero-badge { font-size: 0.7rem; padding: 6px 12px; margin-bottom: 20px; }
+      h1 { font-size: 1.75rem; margin-bottom: 16px; }
+      .hero-sub { font-size: 1rem; margin-bottom: 28px; line-height: 1.65; }
+      .hero-ctas { flex-direction: column; gap: 12px; }
+      .btn-primary { width: 100%; justify-content: center; padding: 14px 24px; font-size: 0.95rem; }
+      .btn-ghost { width: 100%; justify-content: center; padding: 14px 20px; font-size: 0.9rem; }
+      .hero-note { font-size: 0.75rem; }
+      .phone { width: 250px; }
+      .phone-messages { min-height: 240px; padding: 12px; }
+      .msg { font-size: 0.72rem; padding: 8px 12px; }
+      .notif-toast { width: 200px; right: -5px; top: -5px; padding: 10px 12px; gap: 8px; }
+      .notif-icon { width: 30px; height: 30px; border-radius: 8px; }
+      .notif-icon svg { width: 14px; height: 14px; }
+      .notif-title { font-size: 0.65rem; }
+      .notif-desc { font-size: 0.6rem; }
+
+      /* Trust bar */
+      .trust-bar { padding: 24px 0; }
+      .trust-items { flex-direction: column; gap: 14px; align-items: flex-start; }
+      .trust-item { font-size: 0.8rem; }
+
+      /* Sections */
+      section { padding: 56px 0; }
+      h2 { font-size: 1.4rem; }
+      .section-intro { font-size: 0.95rem; margin-bottom: 32px; }
+      .section-label { font-size: 0.7rem; margin-bottom: 12px; }
+
+      /* Problem / Solution cards */
+      .problem-card, .solution-card { padding: 22px 20px; }
+      .problem-icon, .solution-icon { width: 42px; height: 42px; margin-bottom: 16px; }
+
+      /* Audience */
+      .audience-grid { grid-template-columns: 1fr; gap: 14px; }
+      .audience-card { padding: 24px 20px; display: flex; align-items: center; gap: 16px; text-align: left; }
+      .audience-emoji { font-size: 2rem; margin-bottom: 0; flex-shrink: 0; }
+      .audience-card h3 { margin-bottom: 4px; }
+
+      /* Timeline */
+      .timeline { flex-direction: column; align-items: stretch; }
+      .timeline-track { top: 0; bottom: 0; left: 24px; right: auto; width: 3px; height: auto; }
+      .timeline-track-fill { width: 100%; height: 0%; transition: height 2.5s cubic-bezier(.4,0,.2,1); }
+      .simulation.active .timeline-track-fill { width: 100%; height: 100%; }
+      .tl-step { display: flex; align-items: flex-start; gap: 16px; text-align: left; padding: 14px 0; }
+      .tl-node { margin: 0; flex-shrink: 0; width: 44px; height: 44px; }
+      .tl-step-content { flex: 1; }
+      .tl-desc { max-width: 100%; margin: 0; font-size: 0.78rem; }
+      .tl-title { font-size: 0.88rem; }
+      .tl-visual { margin-top: 10px; }
+
+      /* Stats */
+      .matters-grid { grid-template-columns: 1fr; gap: 14px; }
+      .matter-card { padding: 28px 20px; display: flex; flex-direction: column; }
+      .matter-number { font-size: 2.25rem; }
+
+      /* Steps */
+      .step h3 { font-size: 1rem; }
+      .step p { font-size: 0.85rem; }
+      .step-number { width: 46px; height: 46px; font-size: 1.1rem; border-radius: 12px; }
+
+      /* Services */
+      .services-grid { grid-template-columns: 1fr; gap: 16px; }
+      .service-card { padding: 28px 22px; }
+      .service-card h3 { font-size: 1.05rem; }
+      .services-cta { margin-top: 32px; }
+
+      /* FAQ */
+      .faq-list { gap: 10px; }
+      .faq-question { padding: 16px 18px; font-size: 0.92rem; }
+      .faq-answer p { padding: 0 18px 16px; font-size: 0.88rem; }
+
+      /* Final CTA */
+      .final-cta { padding: 64px 0; }
+      .final-cta h2 { font-size: 1.6rem; }
+      .final-cta p { font-size: 0.95rem; margin-bottom: 28px; }
+      .final-cta .btn-primary { font-size: 1rem; padding: 16px 28px; }
+
+      /* Footer */
+      footer { padding: 24px 0; }
+      footer p { font-size: 0.75rem; }
+    }
+
+    /* -- Small phones -- */
+    @media (max-width: 380px) {
+      h1 { font-size: 1.5rem; }
+      .hero { padding: 90px 0 40px; }
+      .phone { width: 220px; }
+      .phone-messages { min-height: 200px; }
+      .notif-toast { display: none; }
+      .hero-badge { font-size: 0.65rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav id="nav">
+    <div class="container">
+      <a href="#" class="logo">
+        <div class="logo-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </div>
+        Nexora
+      </a>
+      <a href="https://wa.me/33769812391?text=Hi%2C%20I%27d%20like%20a%20quick%20demo%20of%20Nexora%20for%20my%20business" class="nav-cta" target="_blank" rel="noopener">Message us on WhatsApp</a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <header class="hero">
+    <div class="hero-bg">
+      <div class="hero-blob hero-blob--1"></div>
+      <div class="hero-blob hero-blob--2"></div>
+      <div class="hero-blob hero-blob--3"></div>
+      <div class="hero-grid-bg"></div>
+    </div>
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span class="hero-badge-dot"></span>
+          Built for independent businesses in London
+        </div>
+        <h1>Your Instagram DMs are <span class="gradient-text">costing you bookings</span></h1>
+        <p class="hero-sub">
+          When a customer messages your business and doesn't get a reply within minutes, they book somewhere else. We fix that — automatically.
+        </p>
+        <div class="hero-ctas">
+          <a href="https://wa.me/33769812391?text=Hi%2C%20I%27d%20like%20a%20quick%20demo%20of%20Nexora%20for%20my%20business" class="btn-primary" target="_blank" rel="noopener">
+            <svg class="wa-svg" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Message us on WhatsApp
+          </a>
+          <a href="#how" class="btn-ghost">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+            See How It Works
+          </a>
+        </div>
+        <p class="hero-note">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          No commitment. No sales pitch. Just a quick look.
+        </p>
+      </div>
+      <div class="hero-visual">
+        <div style="position:relative;">
+          <div class="phone">
+            <div class="phone-notch"></div>
+            <div class="phone-header">
+              <div class="phone-avatar">NX</div>
+              <div class="phone-user-info">
+                <div class="phone-username">Nexora</div>
+                <div class="phone-status"><span class="phone-status-dot"></span> Active now</div>
+              </div>
+              <svg class="phone-ig-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="18" cy="6" r="1.5" fill="currentColor" stroke="none"/></svg>
+            </div>
+            <div class="phone-messages" id="chatMessages">
+              <div class="msg msg--in" data-delay="600">Hi! Do you have any slots free this Saturday? 💈</div>
+              <div class="msg msg--typing" data-delay="1400" id="typingIndicator">
+                <span class="typing-dot"></span>
+                <span class="typing-dot"></span>
+                <span class="typing-dot"></span>
+              </div>
+              <div class="msg msg--out" data-delay="2800">Hey! Thanks for your message 👋 We'd love to get you booked in. Let me check Saturday for you — one moment!</div>
+              <div class="msg msg--out" data-delay="4200">You can also book directly here: yourlink.com/book 📅</div>
+            </div>
+            <div class="phone-input">
+              <div class="phone-input-field">Message...</div>
+              <div class="phone-input-send">
+                <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+              </div>
+            </div>
+          </div>
+          <div class="notif-toast" id="notifToast">
+            <div class="notif-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+            </div>
+            <div class="notif-text">
+              <div class="notif-title">New booking enquiry</div>
+              <div class="notif-desc">Customer wants Saturday slot</div>
+            </div>
+            <div class="notif-time">now</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Trust Bar -->
+  <div class="trust-bar">
+    <div class="container">
+      <div class="trust-items">
+        <div class="trust-item">
+          <div class="trust-icon trust-icon--green">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          No contract
+        </div>
+        <div class="trust-item">
+          <div class="trust-icon trust-icon--accent">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          Set up in 24 hours
+        </div>
+        <div class="trust-item">
+          <div class="trust-icon trust-icon--amber">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          Your data stays private
+        </div>
+        <div class="trust-item">
+          <div class="trust-icon trust-icon--pink">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 3h18v18H3z" fill="none"/><path d="M9 12l2 2 4-4"/></svg>
+          </div>
+          Cancel anytime
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="section-divider">
+
+  <!-- Problem -->
+  <section class="problem">
+    <div class="container">
+      <div class="section-label"><span class="section-label-line"></span> The Problem</div>
+      <h2>You're busy. Messages get missed.</h2>
+      <p class="section-intro">
+        You're cutting hair, making coffee, or running a kitchen. You can't check Instagram every five minutes. But your customers expect fast replies.
+      </p>
+      <div class="problem-grid">
+        <div class="problem-card reveal">
+          <div class="problem-icon">💬</div>
+          <h3>Messages sit unread for hours</h3>
+          <p>Someone asks about availability. By the time you reply, they've already booked with a competitor down the road.</p>
+        </div>
+        <div class="problem-card reveal reveal-delay-1">
+          <div class="problem-icon">⏰</div>
+          <h3>Late replies lose trust</h3>
+          <p>A slow response makes your business look unorganised — even if you're just busy doing your job.</p>
+        </div>
+        <div class="problem-card reveal reveal-delay-2">
+          <div class="problem-icon">📉</div>
+          <h3>Quiet days stay quiet</h3>
+          <p>When enquiries slip through the cracks, your slow weekdays don't get filled. That's money left on the table.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- Solution -->
+  <section class="solution">
+    <div class="container">
+      <div class="section-label"><span class="section-label-line"></span> The Simple Solution</div>
+      <h2>Every message gets a reply. You stay in control.</h2>
+      <p class="section-intro">
+        An automatic reply goes out the moment someone messages you. You get a notification straight away so you can follow up when you're free.
+      </p>
+      <div class="solution-grid">
+        <div class="solution-card reveal">
+          <div class="solution-icon">⚡</div>
+          <h3>Instant reply, every time</h3>
+          <p>Your customer gets a friendly, professional response within seconds — even at midnight or during your busiest hours.</p>
+        </div>
+        <div class="solution-card reveal reveal-delay-1">
+          <div class="solution-icon">📅</div>
+          <h3>Encourages them to book</h3>
+          <p>The reply gently nudges the customer towards booking, keeping the conversation warm while you're unavailable.</p>
+        </div>
+        <div class="solution-card reveal reveal-delay-2">
+          <div class="solution-icon">🔔</div>
+          <h3>You're notified immediately</h3>
+          <p>Get an instant alert on your phone so you know exactly who's interested and can respond personally when you have a moment.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- Who Is This For -->
+  <section class="audience">
+    <div class="container">
+      <div class="section-header--center">
+        <div class="section-label"><span class="section-label-line"></span> Who Is This For</div>
+        <h2>Built for busy independents like you.</h2>
+        <p class="section-intro">
+          If you run a local business in London and get enquiries through Instagram, this is for you.
+        </p>
+      </div>
+      <div class="audience-grid">
+        <div class="audience-card reveal">
+          <span class="audience-emoji">💈</span>
+          <h3>Barbers</h3>
+          <p>You're mid-fade. Can't stop to reply. But that new client just messaged asking for Saturday.</p>
+        </div>
+        <div class="audience-card reveal reveal-delay-1">
+          <span class="audience-emoji">☕</span>
+          <h3>Cafés</h3>
+          <p>Morning rush, short-staffed, and someone on Instagram is asking about catering for an event.</p>
+        </div>
+        <div class="audience-card reveal reveal-delay-2">
+          <span class="audience-emoji">🍽️</span>
+          <h3>Restaurants</h3>
+          <p>Friday night service. Someone DMs about a table for 6 tomorrow. You won't see it until it's too late.</p>
+        </div>
+        <div class="audience-card reveal reveal-delay-3">
+          <span class="audience-emoji">💅</span>
+          <h3>Beauty & Wellness</h3>
+          <p>You're with a client. Someone wants to book lashes for the weekend. They can't wait — but they don't have to.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- Timeline Simulation -->
+  <section class="simulation" id="simulation">
+    <div class="container">
+      <div class="section-header--center">
+        <div class="section-label"><span class="section-label-line"></span> See It In Action</div>
+        <h2>What happens when a customer messages you.</h2>
+        <p class="section-intro">
+          From the moment someone sends you a DM to the moment you get notified — here's the full flow, in real time.
+        </p>
+      </div>
+      <div class="timeline">
+        <div class="timeline-track"><div class="timeline-track-fill"></div></div>
+
+        <div class="tl-step" data-tl-delay="0">
+          <div class="tl-node">
+            <div class="tl-node-ring"></div>
+            <div class="tl-node-inner">
+              <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            </div>
+          </div>
+          <div class="tl-step-content">
+            <span class="tl-time">0 sec</span>
+            <div class="tl-title">Customer sends a DM</div>
+            <div class="tl-desc">"Hi, do you have any slots free this Saturday?"</div>
+            <div class="tl-visual">
+              <div class="tl-mini-card">
+                <div class="tl-mini-card-icon tl-mini-card-icon--accent">
+                  <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                </div>
+                New message received
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-step" data-tl-delay="800">
+          <div class="tl-node">
+            <div class="tl-node-ring"></div>
+            <div class="tl-node-inner">
+              <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+            </div>
+          </div>
+          <div class="tl-step-content">
+            <span class="tl-time">3 sec</span>
+            <div class="tl-title">Instant auto-reply sent</div>
+            <div class="tl-desc">A friendly, professional reply goes out immediately — no waiting.</div>
+            <div class="tl-visual">
+              <div class="tl-mini-card">
+                <div class="tl-mini-card-icon tl-mini-card-icon--green">
+                  <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                </div>
+                Reply delivered
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-step" data-tl-delay="1600">
+          <div class="tl-node">
+            <div class="tl-node-ring"></div>
+            <div class="tl-node-inner">
+              <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+            </div>
+          </div>
+          <div class="tl-step-content">
+            <span class="tl-time">Instant</span>
+            <div class="tl-title">You get notified</div>
+            <div class="tl-desc">A notification hits your phone so you know someone's interested.</div>
+            <div class="tl-visual">
+              <div class="tl-mini-card">
+                <div class="tl-mini-card-icon tl-mini-card-icon--amber">
+                  <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/></svg>
+                </div>
+                Owner alerted
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-step" data-tl-delay="2400">
+          <div class="tl-node">
+            <div class="tl-node-ring"></div>
+            <div class="tl-node-inner">
+              <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><path d="m9 16 2 2 4-4"/></svg>
+            </div>
+          </div>
+          <div class="tl-step-content">
+            <span class="tl-time">Booked</span>
+            <div class="tl-title">Booking recovered</div>
+            <div class="tl-desc">The customer stays engaged and books — instead of going to a competitor.</div>
+            <div class="tl-visual">
+              <div class="tl-mini-card">
+                <div class="tl-mini-card-icon tl-mini-card-icon--pink">
+                  <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m9 16 2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
+                </div>
+                Revenue saved
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-replay-wrap">
+        <button class="tl-replay" id="tlReplay">
+          <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
+          Replay animation
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- Why It Matters -->
+  <section class="matters">
+    <div class="container">
+      <div class="section-header--center">
+        <div class="section-label"><span class="section-label-line"></span> Why This Matters</div>
+        <h2>Small improvements, real results.</h2>
+        <p class="section-intro">
+          You don't need to change how you run your business. Just stop losing the customers who are already trying to reach you.
+        </p>
+      </div>
+      <div class="matters-grid">
+        <div class="matter-card reveal">
+          <div class="matter-number">1–2</div>
+          <h3>Extra bookings a day</h3>
+          <p>Even one or two recovered bookings per day adds up to serious revenue over a month.</p>
+        </div>
+        <div class="matter-card reveal reveal-delay-1">
+          <div class="matter-number">0</div>
+          <h3>Extra hours needed</h3>
+          <p>No time spent glued to your phone. The system handles the first reply for you.</p>
+        </div>
+        <div class="matter-card reveal reveal-delay-2">
+          <div class="matter-number">7</div>
+          <h3>Days a week covered</h3>
+          <p>Works evenings, weekends, and bank holidays — whenever your customers message.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- How It Works -->
+  <section id="how" class="how-it-works">
+    <div class="container">
+      <div class="section-header--center">
+        <div class="section-label"><span class="section-label-line"></span> How It Works</div>
+        <h2>Up and running in three simple steps.</h2>
+        <p class="section-intro">
+          No tech skills needed. No complicated setup. We handle everything.
+        </p>
+      </div>
+      <div class="steps">
+        <div class="step reveal">
+          <div class="step-number">1</div>
+          <div>
+            <h3>Quick chat about your business</h3>
+            <p>We learn how you work, what your customers usually ask, and how you'd like replies to sound. Takes about 10 minutes.</p>
+          </div>
+        </div>
+        <div class="step reveal reveal-delay-1">
+          <div class="step-number">2</div>
+          <div>
+            <h3>We set everything up for you</h3>
+            <p>We connect the system to your Instagram and configure your automatic replies. You don't need to touch anything technical.</p>
+          </div>
+        </div>
+        <div class="step reveal reveal-delay-2">
+          <div class="step-number">3</div>
+          <div>
+            <h3>You start getting notified</h3>
+            <p>From that point on, every Instagram message gets an instant reply and you get a notification. Simple as that.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- FAQ -->
+  <section class="faq">
+    <div class="container">
+      <div class="section-header--center">
+        <div class="section-label"><span class="section-label-line"></span> Common Questions</div>
+        <h2>Frequently asked.</h2>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item reveal">
+          <button class="faq-question" aria-expanded="false">
+            Is this complicated to use?
+            <svg class="faq-chevron" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-answer">
+            <p>Not at all. Once it's set up, you don't need to do anything. You'll just start receiving notifications when someone messages your business. If you can read a text message, you can use this.</p>
+          </div>
+        </div>
+        <div class="faq-item reveal reveal-delay-1">
+          <button class="faq-question" aria-expanded="false">
+            Do I need to change my booking system?
+            <svg class="faq-chevron" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-answer">
+            <p>No. This works alongside whatever you already use — whether that's a diary, an app, or just your phone. Nothing changes about how you take bookings.</p>
+          </div>
+        </div>
+        <div class="faq-item reveal reveal-delay-2">
+          <button class="faq-question" aria-expanded="false">
+            How fast can it be set up?
+            <svg class="faq-chevron" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-answer">
+            <p>Most businesses are up and running within 24 hours. The setup takes about 10 minutes of your time — we handle the rest.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- Other Services -->
+  <section class="services">
+    <div class="container">
+      <div class="section-header--center">
+        <div class="section-label"><span class="section-label-line"></span> We Also Build</div>
+        <h2>Need more than just auto-replies?</h2>
+        <p class="section-intro">
+          We help local businesses in London get found, look professional, and attract more customers online.
+        </p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card reveal">
+          <span class="service-card-badge service-card-badge--popular">Most requested</span>
+          <div class="service-card-icon service-card-icon--purple">🌐</div>
+          <h3>Custom Websites</h3>
+          <p>A clean, fast, mobile-friendly website that actually brings in customers — not just sits there.</p>
+          <ul class="service-features">
+            <li>
+              <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              Designed for your brand
+            </li>
+            <li>
+              <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              SEO-optimised for local search
+            </li>
+            <li>
+              <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              Booking & contact built in
+            </li>
+            <li>
+              <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              Works perfectly on phones
+            </li>
+          </ul>
+        </div>
+        <div class="service-card reveal reveal-delay-1">
+          <span class="service-card-badge service-card-badge--new">High impact</span>
+          <div class="service-card-icon service-card-icon--blue">📈</div>
+          <h3>Social Media Growth</h3>
+          <p>Get more eyes on your business. We set up systems that bring real followers who turn into paying customers.</p>
+          <ul class="service-features">
+            <li>
+              <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              Instagram content strategy
+            </li>
+            <li>
+              <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              Google Business profile
+            </li>
+            <li>
+              <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              Local audience targeting
+            </li>
+            <li>
+              <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              Turns views into bookings
+            </li>
+          </ul>
+        </div>
+        <div class="service-card reveal reveal-delay-2">
+          <div class="service-card-icon service-card-icon--pink">✨</div>
+          <h3>Full Digital Setup</h3>
+          <p>Website + auto-replies + social presence — everything your business needs to look sharp and stay busy, in one package.</p>
+          <ul class="service-features">
+            <li>
+              <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              Everything above, combined
+            </li>
+            <li>
+              <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              One point of contact
+            </li>
+            <li>
+              <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              Ongoing support included
+            </li>
+            <li>
+              <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              Built around your schedule
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="services-cta">
+        <p>Curious about any of these? Let’s have a quick chat — no pressure.</p>
+        <a href="https://wa.me/33769812391?text=Hi%2C%20I%27m%20interested%20in%20your%20services%20for%20my%20business" class="btn-primary" target="_blank" rel="noopener">
+          <svg class="wa-svg" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Tell us what you need
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section id="demo" class="final-cta">
+    <div class="final-cta-bg">
+      <div class="final-cta-blob final-cta-blob--1"></div>
+      <div class="final-cta-blob final-cta-blob--2"></div>
+    </div>
+    <div class="container--narrow">
+      <h2>See it in action.<br><span class="gradient-text">Takes 2 minutes.</span></h2>
+      <p>
+        No commitment, no pressure. Just a quick look at how it works and whether it makes sense for your business.
+      </p>
+      <a href="https://wa.me/33769812391?text=Hi%2C%20I%27d%20like%20a%20quick%20demo%20of%20Nexora%20for%20my%20business" class="btn-primary" target="_blank" rel="noopener">
+        <svg class="wa-svg" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Message us on WhatsApp
+      </a>
+      <span class="cta-note">We typically reply within minutes.</span>
+    </div>
+  </section>
+
+  <!-- Floating WhatsApp Button -->
+  <a href="https://wa.me/33769812391?text=Hi%2C%20I%27d%20like%20to%20know%20more%20about%20Nexora" class="wa-float" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+    <span class="wa-float-label">Chat with us</span>
+    <div class="wa-float-btn">
+      <div class="wa-float-pulse"></div>
+      <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    </div>
+  </a>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>Nexora · London · <a href="mailto:hello@nexora.co.uk">hello@nexora.co.uk</a></p>
+    </div>
+  </footer>
+
+  <script>
+    // ── Nav scroll effect ──
+    var nav = document.getElementById('nav');
+    window.addEventListener('scroll', function() {
+      nav.classList.toggle('scrolled', window.scrollY > 40);
+    });
+
+    // ── Scroll reveal ──
+    var revealObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(function(el) {
+      revealObserver.observe(el);
+    });
+
+    // ── Chat animation ──
+    var messages = document.querySelectorAll('#chatMessages .msg');
+    var typingIndicator = document.getElementById('typingIndicator');
+    var notifToast = document.getElementById('notifToast');
+
+    function animateChat() {
+      messages.forEach(function(msg) {
+        msg.classList.remove('show');
+        msg.style.display = '';
+      });
+      notifToast.classList.remove('show');
+      if (typingIndicator) typingIndicator.style.display = '';
+
+      var delays = [];
+      messages.forEach(function(msg, i) {
+        var delay = parseInt(msg.getAttribute('data-delay')) || (i * 1000);
+        delays.push(delay);
+      });
+
+      messages.forEach(function(msg, i) {
+        if (msg.id === 'typingIndicator') {
+          setTimeout(function() {
+            msg.classList.add('show');
+            setTimeout(function() {
+              msg.style.display = 'none';
+            }, delays[i + 1] ? (delays[i + 1] - delays[i] - 100) : 1200);
+          }, delays[i]);
+        } else {
+          setTimeout(function() {
+            msg.classList.add('show');
+          }, delays[i]);
+        }
+      });
+
+      setTimeout(function() {
+        notifToast.classList.add('show');
+      }, 3200);
+
+      setTimeout(animateChat, 10000);
+    }
+
+    setTimeout(animateChat, 800);
+
+    // ── Timeline simulation ──
+    var simSection = document.getElementById('simulation');
+    var tlSteps = simSection.querySelectorAll('.tl-step');
+    var tlReplayBtn = document.getElementById('tlReplay');
+    var tlHasPlayed = false;
+
+    function runTimeline() {
+      simSection.classList.remove('active');
+      tlSteps.forEach(function(s) { s.classList.remove('active'); });
+
+      void simSection.offsetWidth;
+      simSection.classList.add('active');
+
+      tlSteps.forEach(function(step) {
+        var delay = parseInt(step.getAttribute('data-tl-delay')) || 0;
+        setTimeout(function() {
+          step.classList.add('active');
+        }, delay + 300);
+      });
+    }
+
+    var tlObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting && !tlHasPlayed) {
+          tlHasPlayed = true;
+          runTimeline();
+        }
+      });
+    }, { threshold: 0.3 });
+
+    tlObserver.observe(simSection);
+
+    tlReplayBtn.addEventListener('click', function() {
+      runTimeline();
+    });
+
+    // ── FAQ toggle ──
+    document.querySelectorAll('.faq-question').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var item = btn.parentElement;
+        var isOpen = item.classList.contains('open');
+
+        document.querySelectorAll('.faq-item').forEach(function(el) {
+          el.classList.remove('open');
+          el.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+        });
+
+        if (!isOpen) {
+          item.classList.add('open');
+          btn.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
